@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Second Hand Cars</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .car-card {
+      background: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .car-card h3 {
+      margin: 0 0 0.5rem 0;
+    }
+    form {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 0.7rem 1.5rem;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #219150;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Super Wheelz</h1>
+    <p>Find or list your pre-owned vehicle with ease</p>
+  </header>
+
+  <div class="container">
+    <section id="car-listings">
+      <h2>Available Cars</h2>
+      <!-- Car listings will appear here -->
+    </section>
+
+    <form id="carForm">
+      <h2>List Your Car</h2>
+      <input type="text" id="make" placeholder="Car Make (e.g., Toyota)" required />
+      <input type="text" id="model" placeholder="Model (e.g., Corolla)" required />
+      <input type="number" id="year" placeholder="Year (e.g., 2015)" required />
+      <input type="number" id="price" placeholder="Price (e.g., 7500)" required />
+      <textarea id="description" placeholder="Description" required></textarea>
+      <button type="submit">Add Car</button>
+    </form>
+  </div>
+
+  <script>
+    const carForm = document.getElementById("carForm");
+    const carListings = document.getElementById("car-listings");
+
+    carForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const make = document.getElementById("make").value;
+      const model = document.getElementById("model").value;
+      const year = document.getElementById("year").value;
+      const price = document.getElementById("price").value;
+      const description = document.getElementById("description").value;
+
+      const card = document.createElement("div");
+      card.className = "car-card";
+      card.innerHTML = `
+        <h3>${year} ${make} ${model}</h3>
+        <p><strong>Price:</strong> $${price}</p>
+        <p>${description}</p>
+      `;
+
+      carListings.appendChild(card);
+
+      // Reset form
+      carForm.reset();
+    });
+  </script>
+
+</body>
+</html>
